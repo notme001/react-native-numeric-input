@@ -117,7 +117,7 @@ export default class NumericInput extends Component {
         const totalHeight = this.props.totalHeight ? this.props.totalHeight : (totalWidth * 0.4)
         const inputWidth = this.props.type === 'up-down' ? (totalWidth * 0.6) : (totalWidth * 0.4)
         const paddingRight = totalWidth * 0.18
-        const borderRadiusTotal = totalHeight * 0.18
+        const borderRadiusTotal = 10;
         const fontSize = totalHeight * 0.38
         const textColor = this.props.textColor
         const maxReached = this.state.value === this.props.maxValue
@@ -134,7 +134,7 @@ export default class NumericInput extends Component {
                 position: 'absolute',
                 zIndex: -1,
                 right: 0,
-                height: totalHeight - 2,
+                height: totalHeight,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderWidth: 0,
@@ -152,7 +152,7 @@ export default class NumericInput extends Component {
                 position: 'absolute',
                 zIndex: -1,
                 left: 0,
-                height: totalHeight - 2,
+                height: totalHeight,
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: this.props.leftButtonBackgroundColor,
@@ -189,7 +189,7 @@ export default class NumericInput extends Component {
                     <Icon name='md-remove' size={fontSize} style={[...iconStyle,maxReached ? this.props.reachMaxDecIconStyle : {},minReached ? this.props.reachMinDecIconStyle : {}]} />
                 </Button>
                 <View style={[inputWraperStyle]}>
-                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
+                    <TextInput maxLength={4} editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
                 </View>
                 <Button onPress={this.inc} style={rightButtonStyle}>
                     <Icon name='md-add' size={fontSize} style={[...iconStyle,maxReached ? this.props.reachMaxIncIconStyle : {},minReached ? this.props.reachMinIncIconStyle : {}]} />
@@ -211,13 +211,14 @@ const style = StyleSheet.create({
         justifyContent: 'space-between',
 
         borderColor: 'grey',
-        borderWidth: 1
+        borderWidth: 0
+
     },
     inputContainerPlusMinus: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1
+
     },
     inputUpDown: {
         textAlign: 'center',
